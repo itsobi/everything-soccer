@@ -3,7 +3,6 @@ import { ChevronDown, Slash } from 'lucide-react';
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
@@ -11,14 +10,10 @@ import {
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import Link from 'next/link';
+import { Fragment } from 'react';
 
 const allHeaderLinks = [
   { href: '/premier-league', label: 'Premier League', id: 'PL' },
@@ -49,27 +44,30 @@ export default function Header() {
       <Breadcrumb className="flex justify-center items-center p-8 lg:hidden">
         <BreadcrumbList>
           {smallLinks.map((link, i) => (
-            <>
-              <BreadcrumbItem key={link.id}>
+            <Fragment key={link.id}>
+              <BreadcrumbItem className="hover:text-[#e52534]">
                 <Link href={link.href}>{link.label}</Link>
               </BreadcrumbItem>
               <BreadcrumbSeparator>
                 <Slash />
               </BreadcrumbSeparator>
-            </>
+            </Fragment>
           ))}
           <DropdownMenu>
             <DropdownMenuTrigger className="outline-none">
-              <div className="flex items-center">
+              <div className="flex items-center hover:text-[#e52534]">
                 <p>More</p>
                 <ChevronDown />
               </div>
             </DropdownMenuTrigger>
-            <DropdownMenuContent>
+            <DropdownMenuContent className="z-50">
               {moreLinks.map((link) => (
-                <DropdownMenuItem key={link.id}>
+                <div
+                  key={link.id}
+                  className="hover:bg-[#e52534] hover:text-white p-2 rounded text-sm"
+                >
                   <Link href={link.href}>{link.label}</Link>
-                </DropdownMenuItem>
+                </div>
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
@@ -78,8 +76,8 @@ export default function Header() {
       <Breadcrumb className="hidden lg:flex justify-center items-center p-8">
         <BreadcrumbList>
           {allHeaderLinks.map((link, i) => (
-            <>
-              <BreadcrumbItem key={link.id}>
+            <Fragment key={link.id}>
+              <BreadcrumbItem className="hover:text-[#e52534]">
                 <Link href={link.href}>{link.label}</Link>
               </BreadcrumbItem>
               {allHeaderLinks.length - 1 !== i && (
@@ -87,7 +85,7 @@ export default function Header() {
                   <Slash />
                 </BreadcrumbSeparator>
               )}
-            </>
+            </Fragment>
           ))}
         </BreadcrumbList>
       </Breadcrumb>
