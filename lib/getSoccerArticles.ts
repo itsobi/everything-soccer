@@ -15,7 +15,7 @@ export const getSoccerArticles = async () => {
     'https://api.currentsapi.services/v1/search?language=en&keywords=soccer',
     {
       method: 'GET',
-      next: { revalidate: 86400 },
+      next: { revalidate: 7200 },
       headers: {
         'Content-Type': 'application/json',
         Authorization: `${process.env.CURRENTS_API_KEY}`,

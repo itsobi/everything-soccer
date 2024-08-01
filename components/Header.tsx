@@ -1,4 +1,6 @@
-import { ChevronDown, Slash } from 'lucide-react';
+'use client';
+
+import { ChevronDown, HomeIcon, Slash } from 'lucide-react';
 
 import {
   Breadcrumb,
@@ -14,6 +16,8 @@ import {
 } from '@/components/ui/dropdown-menu';
 import Link from 'next/link';
 import { Fragment } from 'react';
+import { usePathname } from 'next/navigation';
+import { DropdownMenuItem } from '@radix-ui/react-dropdown-menu';
 
 const allHeaderLinks = [
   { href: '/premier-league', label: 'Premier League', id: 'PL' },
@@ -39,14 +43,24 @@ const moreLinks = [
 ];
 
 export default function Header() {
+  const pathname = usePathname();
   return (
-    <header>
-      <Breadcrumb className="flex justify-center items-center p-8 lg:hidden">
+    <header className="shadow py-4 mb-10 sticky top-0 bg-white z-50">
+      <Breadcrumb className="flex justify-center items-center lg:hidden">
         <BreadcrumbList>
-          {smallLinks.map((link, i) => (
+          {pathname !== '/' && (
+            <Link href="/" className="hover:text-[#e52534]">
+              <HomeIcon />
+            </Link>
+          )}
+          {smallLinks.map((link) => (
             <Fragment key={link.id}>
-              <BreadcrumbItem className="hover:text-[#e52534]">
-                <Link href={link.href}>{link.label}</Link>
+              <BreadcrumbItem
+                className={`${
+                  pathname === `/standings/${link.id}` && 'text-[#e52534]'
+                } hover:text-[#e52534]`}
+              >
+                <Link href={`/standings/${link.id}`}>{link.label}</Link>
               </BreadcrumbItem>
               <BreadcrumbSeparator>
                 <Slash />
@@ -60,25 +74,42 @@ export default function Header() {
                 <ChevronDown />
               </div>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="z-50">
+            <DropdownMenuContent className="z-50 bg-white">
               {moreLinks.map((link) => (
-                <div
+                <DropdownMenuItem
+                  asChild
+                  className="hover:bg-[#e52534] hover:text-white"
                   key={link.id}
-                  className="hover:bg-[#e52534] hover:text-white p-2 rounded text-sm"
                 >
-                  <Link href={link.href}>{link.label}</Link>
-                </div>
+                  <Link
+                    href={`/standings/${link.id}`}
+                    className={`block p-1 hover:bg-[#e52534] hover:text-white rounded outline-none ${
+                      pathname === `/standings/${link.id}` && 'text-[#e52534]'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                </DropdownMenuItem>
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
         </BreadcrumbList>
       </Breadcrumb>
-      <Breadcrumb className="hidden lg:flex justify-center items-center p-8">
+      <Breadcrumb className="hidden lg:flex justify-center items-center">
         <BreadcrumbList>
+          {pathname !== '/' && (
+            <Link href="/" className="hover:text-[#e52534]">
+              <HomeIcon />
+            </Link>
+          )}
           {allHeaderLinks.map((link, i) => (
             <Fragment key={link.id}>
-              <BreadcrumbItem className="hover:text-[#e52534]">
-                <Link href={link.href}>{link.label}</Link>
+              <BreadcrumbItem
+                className={`${
+                  pathname === `/standings/${link.id}` && 'text-[#e52534]'
+                } hover:text-[#e52534]`}
+              >
+                <Link href={`/standings/${link.id}`}>{link.label}</Link>
               </BreadcrumbItem>
               {allHeaderLinks.length - 1 !== i && (
                 <BreadcrumbSeparator>
