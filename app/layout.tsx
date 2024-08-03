@@ -4,7 +4,7 @@ import Header from '@/components/Header';
 
 export const metadata: Metadata = {
   title: 'Everything Soccer!',
-  description: 'Up to date scores, stats, and more!',
+  description: 'Up to date standings, news, and more!',
 };
 
 export default function RootLayout({
@@ -15,8 +15,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header />
-        <div className="max-w-6xl mx-auto">{children}</div>
+        <div className="bg-gray-100/50">
+          <Header />
+          <div className="max-w-6xl mx-auto mt-4">{children}</div>
+        </div>
       </body>
     </html>
   );

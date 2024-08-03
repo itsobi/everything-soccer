@@ -45,7 +45,7 @@ const moreLinks = [
 export default function Header() {
   const pathname = usePathname();
   return (
-    <header className="shadow py-4 mb-10 sticky top-0 bg-white z-50">
+    <header className="shadow py-4 sticky top-0 bg-white z-50">
       <Breadcrumb className="flex justify-center items-center lg:hidden">
         <BreadcrumbList>
           {pathname !== '/' && (

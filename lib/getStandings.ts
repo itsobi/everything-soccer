@@ -4,6 +4,10 @@ export const getStandings = async (leagueCode: string, season: string) => {
   const GET_QUERY = gql`
     query MyQuery($leagueCode: String!, $season: String!) {
       standings(leagueCode: $leagueCode, season: $season) {
+        area {
+          name
+          flag
+        }
         competition {
           name
           emblem
@@ -18,6 +22,7 @@ export const getStandings = async (leagueCode: string, season: string) => {
             won
             team {
               id
+              shortName
               crest
               name
             }
@@ -58,6 +63,7 @@ export const getStandings = async (leagueCode: string, season: string) => {
     }
 
     return {
+      location: standings.data.standings.area as Area,
       competition: standings.data.standings.competition as Competition,
       standings: standings.data.standings.standings[0].table as TableEntry[],
     };
