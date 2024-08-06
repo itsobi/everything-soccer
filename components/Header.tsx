@@ -20,26 +20,26 @@ import { usePathname } from 'next/navigation';
 import { DropdownMenuItem } from '@radix-ui/react-dropdown-menu';
 
 const allHeaderLinks = [
-  { href: '/premier-league', label: 'Premier League', id: 'PL' },
-  { href: '/la-liga', label: 'LA LIGA', id: 'PD' },
-  { href: '/bundesliga', label: 'Bundesliga', id: 'BL1' },
-  { href: '/serie-a', label: 'Serie A', id: 'SA' },
-  { href: '/ligue-1', label: 'Ligue 1', id: 'FL1' },
-  { href: '/eredivisie', label: 'Eredivisie', id: 'DED' },
-  { href: '/championship', label: 'Championship (ENG)', id: 'ELC' },
+  { label: 'Premier League', leagueCode: 'PL' },
+  { label: 'LA LIGA', leagueCode: 'PD' },
+  { label: 'Bundesliga', leagueCode: 'BL1' },
+  { label: 'Serie A', leagueCode: 'SA' },
+  { label: 'Ligue 1', leagueCode: 'FL1' },
+  { label: 'Eredivisie', leagueCode: 'DED' },
+  { label: 'Championship (ENG)', leagueCode: 'ELC' },
 ];
 
 const smallLinks = [
-  { href: '/premier-league', label: 'Premier League', id: 'PL' },
-  { href: '/la-liga', label: 'LA LIGA', id: 'PD' },
-  { href: '/bundesliga', label: 'Bundesliga', id: 'BL1' },
+  { label: 'Premier League', leagueCode: 'PL' },
+  { label: 'LA LIGA', leagueCode: 'PD' },
+  { label: 'Bundesliga', leagueCode: 'BL1' },
 ];
 
 const moreLinks = [
-  { href: '/serie-a', label: 'Serie A', id: 'SA' },
-  { href: '/ligue-1', label: 'Ligue 1', id: 'FL1' },
-  { href: '/eredivisie', label: 'Eredivisie', id: 'DED' },
-  { href: '/championship', label: 'Championship (ENG)', id: 'ELC' },
+  { label: 'Serie A', leagueCode: 'SA' },
+  { label: 'Ligue 1', leagueCode: 'FL1' },
+  { label: 'Eredivisie', leagueCode: 'DED' },
+  { label: 'Championship (ENG)', leagueCode: 'ELC' },
 ];
 
 export default function Header() {
@@ -54,13 +54,13 @@ export default function Header() {
             </Link>
           )}
           {smallLinks.map((link) => (
-            <Fragment key={link.id}>
+            <Fragment key={link.leagueCode}>
               <BreadcrumbItem
                 className={`${
-                  pathname === `/standings/${link.id}` && 'text-[#e52534]'
+                  pathname === `/${link.leagueCode}` && 'text-[#e52534]'
                 } hover:text-[#e52534]`}
               >
-                <Link href={`/standings/${link.id}`}>{link.label}</Link>
+                <Link href={`/${link.leagueCode}`}>{link.label}</Link>
               </BreadcrumbItem>
               <BreadcrumbSeparator>
                 <Slash />
@@ -79,12 +79,12 @@ export default function Header() {
                 <DropdownMenuItem
                   asChild
                   className="hover:bg-[#e52534] hover:text-white"
-                  key={link.id}
+                  key={link.leagueCode}
                 >
                   <Link
-                    href={`/standings/${link.id}`}
+                    href={`/${link.leagueCode}`}
                     className={`block p-1 hover:bg-[#e52534] hover:text-white rounded outline-none ${
-                      pathname === `/standings/${link.id}` && 'text-[#e52534]'
+                      pathname === `/${link.leagueCode}` && 'text-[#e52534]'
                     }`}
                   >
                     {link.label}
@@ -103,13 +103,13 @@ export default function Header() {
             </Link>
           )}
           {allHeaderLinks.map((link, i) => (
-            <Fragment key={link.id}>
+            <Fragment key={link.leagueCode}>
               <BreadcrumbItem
                 className={`${
-                  pathname === `/standings/${link.id}` && 'text-[#e52534]'
+                  pathname === `/${link.leagueCode}` && 'text-[#e52534]'
                 } hover:text-[#e52534]`}
               >
-                <Link href={`/standings/${link.id}`}>{link.label}</Link>
+                <Link href={`/${link.leagueCode}`}>{link.label}</Link>
               </BreadcrumbItem>
               {allHeaderLinks.length - 1 !== i && (
                 <BreadcrumbSeparator>

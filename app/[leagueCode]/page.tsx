@@ -9,7 +9,10 @@ import {
   TableRow,
 } from '@/components/ui/table';
 
-export default async function StandingsPage({
+import Link from 'next/link';
+import MatchdaySelector from '@/components/MatchdaySelector';
+
+export default async function LeagueHomePage({
   params,
 }: {
   params: { leagueCode: string };
@@ -21,6 +24,7 @@ export default async function StandingsPage({
 
   return (
     <div className="px-6 xl:px-0">
+      <MatchdaySelector leagueCode={params.leagueCode} />
       <div className="flex items-center justify-center mb-4">
         <img
           src={location.flag}
@@ -30,8 +34,6 @@ export default async function StandingsPage({
         <h1 className="font-semibold font-serif">{competition.name}</h1>
       </div>
       <Table className="w-full">
-        {/* TODO: make this dynamic based on the league code */}
-        {/* <caption>2024/25 English Premier League Table</caption> */}
         <TableHeader>
           <TableRow>
             <TableHead className="text-left font-semibold">Team</TableHead>
@@ -52,7 +54,12 @@ export default async function StandingsPage({
                   alt={standing.team.name}
                   className="w-[30px] h-[30px] mx-2"
                 />
-                {standing.team.shortName}
+                <Link
+                  href={`/${params.leagueCode}/team/${standing.team.id}`}
+                  className="hover:text-[#e52534] cursor-pointer"
+                >
+                  {standing.team.shortName}
+                </Link>
               </TableCell>
               <TableCell className="hidden lg:inline-flex items-center">
                 {standing.position}.{' '}
@@ -61,7 +68,12 @@ export default async function StandingsPage({
                   alt={standing.team.name}
                   className="w-[30px] h-[30px] mx-2"
                 />
-                {standing.team.name}
+                <Link
+                  href={`/${params.leagueCode}/team/${standing.team.id}`}
+                  className="hover:text-[#e52534] cursor-pointer"
+                >
+                  {standing.team.name}
+                </Link>
               </TableCell>
               <TableCell>{standing.points}</TableCell>
               <TableCell>{standing.playedGames}</TableCell>

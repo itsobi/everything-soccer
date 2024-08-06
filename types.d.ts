@@ -67,3 +67,62 @@ type Team = {
   shortName: string;
   tla: string;
 };
+
+type Score = {
+  winner: 'HOME_TEAM' | 'AWAY_TEAM' | 'DRAW';
+  duration: 'REGULAR' | 'EXTRA_TIME' | 'PENALTIES';
+  fullTime: {
+    homeTeam: string;
+    awayTeam: string;
+  };
+  halfTime: {
+    homeTeam: string;
+    awayTeam: string;
+  };
+  extraTime: {
+    homeTeam: string;
+    awayTeam: string;
+  };
+  penalties: {
+    homeTeam: string;
+    awayTeam: string;
+  };
+};
+
+type ResultSet = {
+  count: number;
+  first: string;
+  last: string;
+  played: number;
+};
+
+type Match = {
+  area: Area;
+  competition: Competition;
+  season: Season;
+  id: number;
+  utcDate: string;
+  status:
+    | 'SCHEDULED'
+    | 'LIVE'
+    | 'IN_PLAY'
+    | 'PAUSED'
+    | 'FINISHED'
+    | 'POSTPONED'
+    | 'SUSPENDED'
+    | 'CANCELED';
+  matchday: number;
+  stage:
+    | 'REGULAR_SEASON'
+    | 'PLAY_OFF_ROUND'
+    | 'GROUP_STAGE'
+    | 'ROUND_OF_16'
+    | 'QUARTER_FINALS'
+    | 'SEMI_FINALS'
+    | 'FINAL';
+  group: string;
+  lastUpdated: string;
+  homeTeam: Team;
+  awayTeam: Team;
+  score: Score;
+};

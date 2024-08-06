@@ -37,7 +37,7 @@ export const getStandings = async (leagueCode: string, season: string) => {
       'https://multunku.us-east-a.ibm.stepzen.net/api/masked-magpie/__graphql',
       {
         method: 'POST',
-        next: { revalidate: 21600 },
+        next: { revalidate: 3600 },
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Apikey ${process.env.STEPZEN_API_KEY}`,

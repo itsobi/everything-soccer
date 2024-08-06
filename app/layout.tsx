@@ -18,6 +18,9 @@ export default function RootLayout({
         <div className="bg-gray-100/50">
           <Header />
           <div className="max-w-6xl mx-auto mt-4">{children}</div>
+          {/* <footer className="">
+            <p>brought to you by justobii.com</p>
+          </footer> */}
         </div>
       </body>
     </html>
