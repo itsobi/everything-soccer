@@ -18,7 +18,7 @@ export default function MatchdaySelector({
   leagueCode: string;
 }) {
   const router = useRouter();
-  const maxMatchday = leagueCodeMapping[leagueCode] || 0;
+  const maxMatchday = leagueCodeMapping[leagueCode];
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const matchdayNumber = e.target.value;
@@ -33,8 +33,8 @@ export default function MatchdaySelector({
         onChange={handleChange}
         className="text-center border rounded-full shadow outline-[#e52534] text-sm p-2"
       >
-        <option value="" selected>
-          Select Matchday
+        <option value="" defaultValue="">
+          Matchday
         </option>
         {Array.from({ length: maxMatchday }).map((_, i) => (
           <option key={i + 1} value={(i + 1).toString()}>

@@ -21,7 +21,7 @@ import { DropdownMenuItem } from '@radix-ui/react-dropdown-menu';
 
 const allHeaderLinks = [
   { label: 'Premier League', leagueCode: 'PL' },
-  { label: 'LA LIGA', leagueCode: 'PD' },
+  { label: 'La Liga', leagueCode: 'PD' },
   { label: 'Bundesliga', leagueCode: 'BL1' },
   { label: 'Serie A', leagueCode: 'SA' },
   { label: 'Ligue 1', leagueCode: 'FL1' },
@@ -31,7 +31,7 @@ const allHeaderLinks = [
 
 const smallLinks = [
   { label: 'Premier League', leagueCode: 'PL' },
-  { label: 'LA LIGA', leagueCode: 'PD' },
+  { label: 'La Liga', leagueCode: 'PD' },
   { label: 'Bundesliga', leagueCode: 'BL1' },
 ];
 
@@ -45,33 +45,40 @@ const moreLinks = [
 export default function Header() {
   const pathname = usePathname();
   return (
-    <header className="shadow py-4 sticky top-0 bg-white z-50">
+    <header className="shadow py-4 sticky top-0 bg-white z-50 mb-10">
       <Breadcrumb className="flex justify-center items-center lg:hidden">
         <BreadcrumbList>
           {pathname !== '/' && (
-            <Link href="/" className="hover:text-[#e52534]">
-              <HomeIcon />
-            </Link>
+            <>
+              <Link href="/" className="hover:text-[#e52534]">
+                <HomeIcon />
+              </Link>
+              <BreadcrumbSeparator>
+                <Slash className="text-gray-300" />
+              </BreadcrumbSeparator>
+            </>
           )}
           {smallLinks.map((link) => (
             <Fragment key={link.leagueCode}>
               <BreadcrumbItem
                 className={`${
-                  pathname === `/${link.leagueCode}` && 'text-[#e52534]'
+                  pathname.includes(`/${link.leagueCode}`) && 'text-[#e52534]'
                 } hover:text-[#e52534]`}
               >
-                <Link href={`/${link.leagueCode}`}>{link.label}</Link>
+                <Link href={`/${link.leagueCode}`} className="font-serif">
+                  {link.label}
+                </Link>
               </BreadcrumbItem>
               <BreadcrumbSeparator>
-                <Slash />
+                <Slash className="text-gray-300" />
               </BreadcrumbSeparator>
             </Fragment>
           ))}
           <DropdownMenu>
             <DropdownMenuTrigger className="outline-none">
               <div className="flex items-center hover:text-[#e52534]">
-                <p>More</p>
-                <ChevronDown />
+                <p className="font-serif">More</p>
+                <ChevronDown className="text-gray-300 hover:text-[#e52534]" />
               </div>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="z-50 bg-white">
@@ -83,8 +90,9 @@ export default function Header() {
                 >
                   <Link
                     href={`/${link.leagueCode}`}
-                    className={`block p-1 hover:bg-[#e52534] hover:text-white rounded outline-none ${
-                      pathname === `/${link.leagueCode}` && 'text-[#e52534]'
+                    className={`block p-1 hover:bg-[#e52534] hover:text-white rounded outline-none font-serif ${
+                      pathname.includes(`/${link.leagueCode}`) &&
+                      'text-[#e52534]'
                     }`}
                   >
                     {link.label}
@@ -106,14 +114,16 @@ export default function Header() {
             <Fragment key={link.leagueCode}>
               <BreadcrumbItem
                 className={`${
-                  pathname === `/${link.leagueCode}` && 'text-[#e52534]'
+                  pathname.includes(`/${link.leagueCode}`) && 'text-[#e52534]'
                 } hover:text-[#e52534]`}
               >
-                <Link href={`/${link.leagueCode}`}>{link.label}</Link>
+                <Link href={`/${link.leagueCode}`} className="font-serif">
+                  {link.label}
+                </Link>
               </BreadcrumbItem>
               {allHeaderLinks.length - 1 !== i && (
                 <BreadcrumbSeparator>
-                  <Slash />
+                  <Slash className="text-gray-300" />
                 </BreadcrumbSeparator>
               )}
             </Fragment>

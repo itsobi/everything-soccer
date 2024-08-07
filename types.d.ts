@@ -72,20 +72,12 @@ type Score = {
   winner: 'HOME_TEAM' | 'AWAY_TEAM' | 'DRAW';
   duration: 'REGULAR' | 'EXTRA_TIME' | 'PENALTIES';
   fullTime: {
-    homeTeam: string;
-    awayTeam: string;
+    home: string;
+    away: string;
   };
   halfTime: {
-    homeTeam: string;
-    awayTeam: string;
-  };
-  extraTime: {
-    homeTeam: string;
-    awayTeam: string;
-  };
-  penalties: {
-    homeTeam: string;
-    awayTeam: string;
+    home: string;
+    away: string;
   };
 };
 
