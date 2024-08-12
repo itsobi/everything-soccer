@@ -118,3 +118,40 @@ type Match = {
   awayTeam: Team;
   score: Score;
 };
+
+type Coach = {
+  id: number;
+  firstName: string;
+  lastName: string;
+  name: string;
+  dateOfBirth: string;
+  nationality: string;
+  contract: {
+    start: string;
+    until: string;
+  };
+};
+
+type Squad = {
+  id: number;
+  name: string;
+  position: string;
+  dateOfBirth: string;
+  nationality: string;
+};
+
+type TeamDetails = {
+  area: Area;
+  id: number;
+  name: string;
+  shortName: string;
+  tla: string;
+  crest: string;
+  address: string;
+  website: string;
+  founded: number;
+  clubColors: string;
+  venue: string;
+  coach: Coach;
+  squad: Squad[];
+};

@@ -41,10 +41,10 @@ export default async function LeagueHomePage({
           <MatchdaySelector leagueCode={params.leagueCode} />
         </div>
       </div>
-      <div className="flex justify-end lg:hidden">
+      <div className="flex justify-end mb-4 lg:hidden">
         <MatchdaySelector leagueCode={params.leagueCode} />
       </div>
-      <div className="border rounded p-2 bg-white shadow">
+      <div className="border rounded p-2 bg-white shadow-md mb-8">
         <Table className="w-full">
           <TableHeader>
             <TableRow>
@@ -68,7 +68,7 @@ export default async function LeagueHomePage({
                   />
                   <Link
                     href={`/${params.leagueCode}/team/${standing.team.id}`}
-                    className="hover:text-[#e52534] cursor-pointer"
+                    className="text-blue-400 hover:underline cursor-pointer"
                   >
                     {standing.team.shortName}
                   </Link>
@@ -82,7 +82,7 @@ export default async function LeagueHomePage({
                   />
                   <Link
                     href={`/${params.leagueCode}/team/${standing.team.id}`}
-                    className="hover:text-[#e52534] cursor-pointer"
+                    className="text-blue-400 hover:underline cursor-pointer"
                   >
                     {standing.team.name}
                   </Link>

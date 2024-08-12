@@ -1,6 +1,8 @@
 import Match from '@/components/Match';
 import MatchdayArrows from '@/components/MatchdayArrows';
 import { getMatchdayMatches } from '@/lib/getMatchdayMatches';
+import serieALogo from '@/public/serie-a.png';
+import Image from 'next/image';
 
 const leagueNumOfMatchdays: { [key: string]: number } = {
   PL: 38,
@@ -25,13 +27,21 @@ export default async function MatchdayPage({
   const maxMatchWeeks = leagueNumOfMatchdays[params.leagueCode];
 
   return (
-    <div className="h-screen">
+    <div className="min-h-screen">
       <div className="flex justify-center items-center space-x-4 mt-6">
-        <img
-          src={competition.emblem}
-          alt={competition.name}
-          className="w-[100px] h-[100px]"
-        />
+        {params.leagueCode === 'SA' ? (
+          <Image
+            src={serieALogo}
+            alt={competition.name}
+            className="w-[100px] h-[100px]"
+          />
+        ) : (
+          <img
+            src={competition.emblem}
+            alt={competition.name}
+            className="w-[100px] h-[100px]"
+          />
+        )}
         <p className="font-serif">
           Matchday {params.matchdayNumber} of {maxMatchWeeks}
         </p>

@@ -85,7 +85,7 @@ export default function Header() {
               {moreLinks.map((link) => (
                 <DropdownMenuItem
                   asChild
-                  className="hover:bg-[#e52534] hover:text-white"
+                  className="hover:bg-[#e52534] hover:text-white text-sm"
                   key={link.leagueCode}
                 >
                   <Link
@@ -106,9 +106,14 @@ export default function Header() {
       <Breadcrumb className="hidden lg:flex justify-center items-center">
         <BreadcrumbList>
           {pathname !== '/' && (
-            <Link href="/" className="hover:text-[#e52534]">
-              <HomeIcon />
-            </Link>
+            <>
+              <Link href="/" className="hover:text-[#e52534]">
+                <HomeIcon />
+              </Link>
+              <BreadcrumbSeparator>
+                <Slash className="text-gray-300" />
+              </BreadcrumbSeparator>
+            </>
           )}
           {allHeaderLinks.map((link, i) => (
             <Fragment key={link.leagueCode}>

@@ -28,10 +28,10 @@ export default function MatchdaySelector({
   };
 
   return (
-    <div className="flex justify-center items-center my-8">
+    <div className="flex justify-center items-center">
       <select
         onChange={handleChange}
-        className="text-center border rounded-full shadow outline-[#e52534] text-sm p-2"
+        className="text-center border shadow-md outline-none text-sm p-2 font-serif rounded-full"
       >
         <option value="" defaultValue="">
           Matchday
