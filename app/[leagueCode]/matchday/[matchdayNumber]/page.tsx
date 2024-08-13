@@ -53,7 +53,7 @@ export default async function MatchdayPage({
       />
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 p-4 xl:p-0">
         {matches.map((match) => (
-          <Match key={match.id} match={match} />
+          <Match key={match.id} match={match} competition={competition} />
         ))}
       </div>
     </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import { ChevronDown, HomeIcon, Slash } from 'lucide-react';
+import { ChevronDown, Newspaper, Slash } from 'lucide-react';
 
 import {
   Breadcrumb,
@@ -51,7 +51,7 @@ export default function Header() {
           {pathname !== '/' && (
             <>
               <Link href="/" className="hover:text-[#e52534]">
-                <HomeIcon />
+                <Newspaper />
               </Link>
               <BreadcrumbSeparator>
                 <Slash className="text-gray-300" />
@@ -108,7 +108,7 @@ export default function Header() {
           {pathname !== '/' && (
             <>
               <Link href="/" className="hover:text-[#e52534]">
-                <HomeIcon />
+                <Newspaper />
               </Link>
               <BreadcrumbSeparator>
                 <Slash className="text-gray-300" />
