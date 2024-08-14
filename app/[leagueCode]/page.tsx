@@ -69,6 +69,7 @@ export default async function LeagueHomePage({
                   <Link
                     href={`/${params.leagueCode}/team/${standing.team.id}`}
                     className="text-blue-400 hover:underline cursor-pointer"
+                    prefetch={false}
                   >
                     {standing.team.shortName}
                   </Link>
@@ -83,6 +84,7 @@ export default async function LeagueHomePage({
                   <Link
                     href={`/${params.leagueCode}/team/${standing.team.id}`}
                     className="text-blue-400 hover:underline cursor-pointer"
+                    prefetch={false}
                   >
                     {standing.team.name}
                   </Link>

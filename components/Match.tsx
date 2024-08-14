@@ -22,6 +22,7 @@ export default function Match({
             <Link
               href={`${vercelUrl}/${competition.code}/team/${match.homeTeam.id}`}
               className="text-blue-400 hover:underline cursor-pointer"
+              prefetch={false}
             >
               {match.homeTeam.shortName}
               {''}
@@ -48,6 +49,7 @@ export default function Match({
             <Link
               href={`${vercelUrl}/${competition.code}/team/${match.awayTeam.id}`}
               className="text-blue-400 hover:underline cursor-pointer"
+              prefetch={false}
             >
               {match.awayTeam.shortName}
               {''}

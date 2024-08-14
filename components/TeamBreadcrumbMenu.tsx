@@ -14,13 +14,17 @@ import { usePathname } from 'next/navigation';
 type Props = {
   leagueCode: string;
   teamId: string;
-  address: string;
+  latitude: string;
+  longitude: string;
+  clubName: string;
 };
 
 export default function TeamBreadcrumbMenu({
   leagueCode,
   teamId,
-  address,
+  latitude,
+  longitude,
+  clubName,
 }: Props) {
   const pathname = usePathname();
   return (
@@ -42,7 +46,7 @@ export default function TeamBreadcrumbMenu({
           </BreadcrumbSeparator>
           <BreadcrumbItem>
             <Link
-              href={`/${leagueCode}/team/${teamId}/location?${address}`}
+              href={`/${leagueCode}/team/${teamId}/location?club=${clubName}&lat=${latitude}&long=${longitude}`}
               className={`${
                 pathname === `/${leagueCode}/team/${teamId}/location` &&
                 'text-[#e52534]'

@@ -7,31 +7,10 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { getCoordinates } from '@/lib/getCordinates';
 import { getCurrentAge } from '@/lib/getCurrentAge';
 import { getTeam } from '@/lib/getTeam';
-import { Clipboard, LandPlot } from 'lucide-react';
-
-type TeamInfo = {
-  id: number;
-  name: string;
-  shortName: string;
-  tla: string;
-  crest: string;
-  address: string;
-  website: string;
-  founded: number;
-  clubColors: string;
-  venue: string;
-};
-
-type Position = 'Goalkeeper' | 'Defence' | 'Midfield' | 'Offence';
-
-const initialSquadValues: Record<Position, Squad[]> = {
-  Goalkeeper: [],
-  Defence: [],
-  Midfield: [],
-  Offence: [],
-};
+import { Clipboard } from 'lucide-react';
 
 export default async function TeamPage({
   params,
@@ -39,18 +18,20 @@ export default async function TeamPage({
   params: { leagueCode: string; teamId: string };
 }) {
   const { result } = await getTeam(params.teamId);
-
-  const encodedName = encodeURIComponent(result.coach.name);
-  const encodedAddress = encodeURIComponent(result.address);
-
-  console.log(encodedAddress);
+  const { latitude, longitude } = await getCoordinates(
+    encodeURIComponent(result.address)
+  );
+  const encodedCoachName = encodeURIComponent(result.coach.name);
+  const encodedClubName = encodeURIComponent(result.name);
 
   return (
     <div className="min-h-screen flex-col space-y-8 px-6 xl:px-0">
       <TeamBreadcrumbMenu
         leagueCode={params.leagueCode}
         teamId={params.teamId}
-        address={encodedAddress}
+        latitude={latitude}
+        longitude={longitude}
+        clubName={encodedClubName}
       />
       <div className="flex justify-between items-center">
         <div className="flex items-center space-x-2">
@@ -66,7 +47,7 @@ export default async function TeamPage({
           <div className="flex items-center space-x-1">
             <Clipboard className="rotate-45" />
             <a
-              href={`https://www.google.com/search?q=${encodedName}`}
+              href={`https://www.google.com/search?q=${encodedCoachName}`}
               className="text-blue-400 hover:underline cursor-pointer"
               target="_blank"
               rel="noopener noreferrer"
