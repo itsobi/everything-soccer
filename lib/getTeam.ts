@@ -1,25 +1,3 @@
-type Position = 'Goalkeeper' | 'Defence' | 'Midfield' | 'Offence';
-
-type TeamInfo = {
-  id: number;
-  name: string;
-  shortName: string;
-  tla: string;
-  crest: string;
-  address: string;
-  website: string;
-  founded: number;
-  clubColors: string;
-  venue: string;
-};
-
-const initialSquadValues: Record<Position, Squad[]> = {
-  Goalkeeper: [],
-  Defence: [],
-  Midfield: [],
-  Offence: [],
-};
-
 export const getTeam = async (teamId: string) => {
   const apiKey = process.env.FOOTBALL_DATA_API_KEY;
   if (!apiKey) {

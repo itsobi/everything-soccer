@@ -53,7 +53,7 @@ export const getStandings = async (leagueCode: string, season: string) => {
     );
 
     if (!response) {
-      throw new Error(`Failed to fetch data`);
+      throw new Error(`Failed to send standings info to StepZen`);
     }
 
     const standings = await response.json();

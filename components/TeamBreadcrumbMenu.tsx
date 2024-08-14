@@ -14,18 +14,9 @@ import { usePathname } from 'next/navigation';
 type Props = {
   leagueCode: string;
   teamId: string;
-  latitude: string;
-  longitude: string;
-  clubName: string;
 };
 
-export default function TeamBreadcrumbMenu({
-  leagueCode,
-  teamId,
-  latitude,
-  longitude,
-  clubName,
-}: Props) {
+export default function TeamBreadcrumbMenu({ leagueCode, teamId }: Props) {
   const pathname = usePathname();
   return (
     <div className="flex items-center justify-center">
@@ -33,10 +24,11 @@ export default function TeamBreadcrumbMenu({
         <BreadcrumbList>
           <BreadcrumbItem>
             <Link
-              href={`/${leagueCode}/team/${teamId}/`}
+              href={`/${leagueCode}/team/${teamId}`}
               className={`${
                 pathname === `/${leagueCode}/team/${teamId}` && 'text-[#e52534]'
               } font-serif hover:text-[#e52534]`}
+              prefetch={false}
             >
               Squad
             </Link>
@@ -46,11 +38,13 @@ export default function TeamBreadcrumbMenu({
           </BreadcrumbSeparator>
           <BreadcrumbItem>
             <Link
-              href={`/${leagueCode}/team/${teamId}/location?club=${clubName}&lat=${latitude}&long=${longitude}`}
+              href={`/${leagueCode}/team/${teamId}/location/${teamId}`}
               className={`${
-                pathname === `/${leagueCode}/team/${teamId}/location` &&
+                pathname ===
+                  `/${leagueCode}/team/${teamId}/location/${teamId}` &&
                 'text-[#e52534]'
               } font-serif hover:text-[#e52534]`}
+              prefetch={false}
             >
               Location
             </Link>

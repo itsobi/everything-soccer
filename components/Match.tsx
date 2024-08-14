@@ -1,7 +1,5 @@
 import Link from 'next/link';
 
-const vercelUrl = process.env.VERCEL_URL || 'http://localhost:3000';
-
 export default function Match({
   match,
   competition,
@@ -20,7 +18,7 @@ export default function Match({
               className="w-[30px] h-[30px] mx-2"
             />
             <Link
-              href={`${vercelUrl}/${competition.code}/team/${match.homeTeam.id}`}
+              href={`/${competition.code}/team/${match.homeTeam.id}`}
               className="text-blue-400 hover:underline cursor-pointer"
               prefetch={false}
             >
@@ -47,7 +45,7 @@ export default function Match({
               className="w-[30px] h-[30px] mx-2"
             />
             <Link
-              href={`${vercelUrl}/${competition.code}/team/${match.awayTeam.id}`}
+              href={`/${competition.code}/team/${match.awayTeam.id}`}
               className="text-blue-400 hover:underline cursor-pointer"
               prefetch={false}
             >

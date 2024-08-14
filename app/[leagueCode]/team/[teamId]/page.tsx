@@ -7,7 +7,6 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { getCoordinates } from '@/lib/getCordinates';
 import { getCurrentAge } from '@/lib/getCurrentAge';
 import { getTeam } from '@/lib/getTeam';
 import { Clipboard } from 'lucide-react';
@@ -18,20 +17,13 @@ export default async function TeamPage({
   params: { leagueCode: string; teamId: string };
 }) {
   const { result } = await getTeam(params.teamId);
-  const { latitude, longitude } = await getCoordinates(
-    encodeURIComponent(result.address)
-  );
   const encodedCoachName = encodeURIComponent(result.coach.name);
-  const encodedClubName = encodeURIComponent(result.name);
 
   return (
     <div className="min-h-screen flex-col space-y-8 px-6 xl:px-0">
       <TeamBreadcrumbMenu
         leagueCode={params.leagueCode}
         teamId={params.teamId}
-        latitude={latitude}
-        longitude={longitude}
-        clubName={encodedClubName}
       />
       <div className="flex justify-between items-center">
         <div className="flex items-center space-x-2">
