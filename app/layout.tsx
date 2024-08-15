@@ -22,7 +22,7 @@ export default function RootLayout({
           <GoogleMapsApiProvider>
             <Header />
             <div className="max-w-6xl mx-auto">{children}</div>
-            <footer className="text-sm pl-2 pb-2 pt-4 text-gray-400">
+            <footer className="text-xs pl-2 pb-2 pt-4 text-gray-400">
               <p>
                 brought to you by:{' '}
                 <a

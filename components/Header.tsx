@@ -65,7 +65,7 @@ export default function Header() {
           <DrawerTrigger>
             <Menu onClick={() => setOpen(true)} className="cursor-pointer" />
           </DrawerTrigger>
-          <DrawerContent className="bg-white h-screen">
+          <DrawerContent className="bg-white h-screen pt-4 sm:pt-0">
             <div className="pl-4">
               <X onClick={() => setOpen(false)} className="cursor-pointer" />
             </div>
@@ -100,7 +100,7 @@ export default function Header() {
               </div>
             </div>
             <DrawerFooter>
-              <p className="text-xs">
+              <p className="text-xs text-gray-400">
                 brought to you by:{' '}
                 <a
                   href="https://justobii.com"
