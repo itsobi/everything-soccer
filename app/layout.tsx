@@ -17,9 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <GoogleMapsApiProvider>
-        <body>
-          <div className="bg-gray-100/50">
+      <body>
+        <div className="bg-gray-100/50">
+          <GoogleMapsApiProvider>
             <Header />
             <div className="max-w-6xl mx-auto">{children}</div>
             <footer className="text-sm pl-2 pb-2 pt-4 text-gray-400">
@@ -35,9 +35,9 @@ export default function RootLayout({
                 </a>
               </p>
             </footer>
-          </div>
-        </body>
-      </GoogleMapsApiProvider>
+          </GoogleMapsApiProvider>
+        </div>
+      </body>
     </html>
   );
 }

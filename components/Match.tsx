@@ -25,7 +25,6 @@ export default function Match({
               {match.homeTeam.shortName}
               {''}
             </Link>
-            <span className="text-xs font-thin">(H)</span>
           </div>
           {match.score.fullTime.home && (
             <p
@@ -52,7 +51,6 @@ export default function Match({
               {match.awayTeam.shortName}
               {''}
             </Link>
-            <span className="text-xs font-thin">(A)</span>
           </div>
           {match.score.fullTime.away && (
             <p
