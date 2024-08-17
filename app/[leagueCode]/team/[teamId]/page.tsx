@@ -25,7 +25,7 @@ export default async function TeamPage({
         leagueCode={params.leagueCode}
         teamId={params.teamId}
       />
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col lg:flex-row justify-between items-center">
         <div className="flex items-center space-x-2">
           <h1 className="text-lg lg:text-2xl font-semibold">{result.name}</h1>
           <div className="h-8 border" />
