@@ -8,8 +8,10 @@ export default async function MapPage({
 }: {
   params: { leagueCode: string; id: string };
 }) {
-  const teamInfo = await getTeamLocationInfo(params.id);
-  const { latitude, longitude } = await getCoordinates(teamInfo.address);
+  const { teamInfo, latitude, longitude } = await getTeamLocationInfo(
+    params.id
+  );
+
   return (
     <div className="w-full min-h-screen">
       <TeamBreadcrumbMenu leagueCode={params.leagueCode} teamId={params.id} />

@@ -19,18 +19,19 @@ type Props = {
 export default function TeamBreadcrumbMenu({ leagueCode, teamId }: Props) {
   const pathname = usePathname();
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center p-4 border-b">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
             <Link
               href={`/${leagueCode}/team/${teamId}`}
               className={`${
-                pathname === `/${leagueCode}/team/${teamId}` && 'text-[#e52534]'
-              } font-serif hover:text-[#e52534]`}
+                pathname === `/${leagueCode}/team/${teamId}` &&
+                'text-[#e52534] underline underline-offset-4 decoration-4'
+              } hover:text-[#e52534] `}
               prefetch={false}
             >
-              Squad
+              Team
             </Link>
           </BreadcrumbItem>
           <BreadcrumbSeparator>
@@ -42,8 +43,8 @@ export default function TeamBreadcrumbMenu({ leagueCode, teamId }: Props) {
               className={`${
                 pathname ===
                   `/${leagueCode}/team/${teamId}/location/${teamId}` &&
-                'text-[#e52534]'
-              } font-serif hover:text-[#e52534]`}
+                'text-[#e52534] underline underline-offset-4 decoration-4'
+              } hover:text-[#e52534]`}
               prefetch={false}
             >
               Location

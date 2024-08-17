@@ -10,11 +10,12 @@ import {
 } from '@/components/ui/breadcrumb';
 
 import {
-  Drawer,
-  DrawerContent,
-  DrawerFooter,
-  DrawerTrigger,
-} from '@/components/ui/drawer';
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetFooter,
+  SheetTrigger,
+} from '@/components/ui/sheet';
 
 import Link from 'next/link';
 import { Fragment, useState } from 'react';
@@ -59,70 +60,55 @@ export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="shadow py-4 sticky top-0 bg-[#2b2c2d] text-white z-50 mb-10">
-      <div className="lg:hidden flex justify-between items-center px-4">
-        <Drawer direction="left" open={open} onClose={() => setOpen(false)}>
-          <DrawerTrigger>
-            <Menu onClick={() => setOpen(true)} className="cursor-pointer" />
-          </DrawerTrigger>
-          <DrawerContent className="bg-white h-screen pt-4 sm:pt-0">
-            <div className="pl-4">
-              <X onClick={() => setOpen(false)} className="cursor-pointer" />
-            </div>
-
-            <div>
-              <div className="flex flex-col">
+    <header className="shadow py-4 sticky top-0 bg-[#2b2c2d] text-white z-50">
+      <div className="lg:hidden flex items-center justify-between px-4">
+        <Sheet open={open} onOpenChange={setOpen}>
+          <SheetTrigger>
+            <Menu className="cursor-pointer" />
+          </SheetTrigger>
+          <SheetContent className="w-full bg-white z-50" side="left">
+            <SheetClose onClick={() => setOpen(false)}>
+              <X />
+              <span className="sr-only">Close</span>
+            </SheetClose>
+            <div className="flex flex-col">
+              <button
+                onClick={() => {
+                  router.push(`/`);
+                  setOpen(false);
+                }}
+                className={`font-semibold hover:text-[#e52534] border-b p-2 ${
+                  pathname === '/' && 'text-[#e52534]'
+                }`}
+              >
+                Home
+              </button>
+              {allHeaderLinks.map((link) => (
                 <button
+                  key={link.leagueCode}
                   onClick={() => {
-                    router.push(`/`);
+                    router.push(`/${link.leagueCode}`);
                     setOpen(false);
                   }}
                   className={`font-semibold hover:text-[#e52534] border-b p-2 ${
-                    pathname === '/' && 'text-[#e52534]'
+                    pathname.includes(`/${link.leagueCode}`) && 'text-[#e52534]'
                   }`}
                 >
-                  Home
+                  {link.label}
                 </button>
-                {allHeaderLinks.map((link) => (
-                  <button
-                    key={link.leagueCode}
-                    onClick={() => {
-                      router.push(`/${link.leagueCode}`);
-                      setOpen(false);
-                    }}
-                    className={`font-semibold hover:text-[#e52534] border-b p-2 ${
-                      pathname === `/${link.leagueCode}` && 'text-[#e52534]'
-                    }`}
-                  >
-                    {link.label}
-                  </button>
-                ))}
-              </div>
+              ))}
             </div>
-            <DrawerFooter>
-              <p className="text-xs text-gray-400">
-                brought to you by:{' '}
-                <a
-                  href="https://justobii.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-400 hover:underline"
-                >
-                  justobii.com
-                </a>
-              </p>
-            </DrawerFooter>
-          </DrawerContent>
-        </Drawer>
-
-        <Image src={soccerBall} alt="soccer ball" />
+          </SheetContent>
+        </Sheet>
+        <Image src={soccerBall} alt="Soccer ball" />
       </div>
+
       <Breadcrumb className="hidden lg:flex justify-center items-center">
         <BreadcrumbList>
           {pathname !== '/' && (
             <>
               <Link href="/" className="hover:text-[#e52534]">
-                <Newspaper />
+                <Newspaper size={18} />
               </Link>
               <BreadcrumbSeparator>
                 <Slash className="text-gray-300" />

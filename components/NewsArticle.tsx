@@ -9,7 +9,7 @@ export default function NewsArticle({ article }: { article: Article }) {
         <img
           src={article.image}
           alt={article.title}
-          className="object-cover rounded p-4"
+          className="h-[250px] object-contain p-4"
         />
       )}
       <div className="flex-col items-center space-y-4 p-4 lg:p-8">

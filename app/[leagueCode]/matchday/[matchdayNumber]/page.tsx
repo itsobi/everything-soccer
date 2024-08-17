@@ -42,7 +42,7 @@ export default async function MatchdayPage({
             className="w-[100px] h-[100px]"
           />
         )}
-        <p className="text-gray-400">
+        <p className="text-gray-500 text-xl font-semibold">
           Matchday {params.matchdayNumber} of {maxMatchWeeks}
         </p>
       </div>

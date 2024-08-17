@@ -27,7 +27,7 @@ export default async function TeamPage({
       />
       <div className="flex justify-between items-center">
         <div className="flex items-center space-x-2">
-          <h1 className="text-xl font-semibold font-serif">{result.name}</h1>
+          <h1 className="text-lg lg:text-2xl font-semibold">{result.name}</h1>
           <div className="h-8 border" />
           <img
             src={result.crest}
@@ -35,7 +35,7 @@ export default async function TeamPage({
             className="w-[50px] h-[50px]"
           />
         </div>
-        <div className="hidden md:inline-flex flex-col items-center font-serif space-x-1">
+        <div className="flex flex-col items-center text-sm lg:text-base space-x-1">
           <div className="flex items-center space-x-1">
             <Clipboard className="rotate-45" />
             <a

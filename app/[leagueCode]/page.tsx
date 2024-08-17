@@ -23,10 +23,10 @@ export default async function LeagueHomePage({
   );
 
   return (
-    <div className="px-6 xl:px-0">
+    <div className="px-6 xl:px-0 py-8">
       <div className="flex items-center justify-between lg:mb-4">
         <div className="flex items-center space-x-2">
-          <h1 className="text-xl font-semibold font-serif">
+          <h1 className="text-lg lg:text-2xl font-semibold">
             {competition.name}
           </h1>
           <div className="h-8 border" />

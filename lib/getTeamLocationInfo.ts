@@ -1,4 +1,5 @@
 import { gql } from 'graphql-request';
+import { getCoordinates } from './getCoordinates';
 
 export type TeamLocationInfo = {
   address: string;
@@ -49,8 +50,16 @@ export const getTeamLocationInfo = async (teamId: string) => {
     }
 
     const team = await response.json();
+    const teamInfo = team.data.team as TeamLocationInfo;
 
-    return team.data.team as TeamLocationInfo;
+    // Fetch coordinates
+    const { latitude, longitude } = await getCoordinates(teamInfo.address);
+
+    return {
+      teamInfo,
+      latitude,
+      longitude,
+    };
   } catch (error) {
     throw new Error(`getTeamLocationInfo error: ${error}`);
   }

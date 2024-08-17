@@ -31,7 +31,7 @@ export default function MatchdaySelector({
     <div className="flex justify-center items-center">
       <select
         onChange={handleChange}
-        className="text-center border shadow-md outline-none text-sm p-2 font-serif rounded-full"
+        className="text-center border shadow-md outline-none text-sm p-2 rounded-full"
       >
         <option value="" defaultValue="">
           Matchday
