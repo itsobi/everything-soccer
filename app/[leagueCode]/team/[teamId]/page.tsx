@@ -55,18 +55,26 @@ export default async function TeamPage({
           <TableHeader>
             <TableRow>
               <TableHead className="font-semibold">Name</TableHead>
-              <TableHead className="font-semibold">Age</TableHead>
-              <TableHead className="font-semibold">Position</TableHead>
-              <TableHead className="font-semibold">Nationality</TableHead>
+              <TableHead className="font-semibold text-left">Age</TableHead>
+              <TableHead className="font-semibold text-right">
+                Position
+              </TableHead>
+              <TableHead className="font-semibold text-right">
+                Nationality
+              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {result.squad?.map((player) => (
               <TableRow key={player.id}>
                 <TableCell>{player.name}</TableCell>
-                <TableCell>{player.position}</TableCell>
-                <TableCell>{getCurrentAge(player.dateOfBirth)}</TableCell>
-                <TableCell>{player.nationality}</TableCell>
+                <TableCell className="text-left">
+                  {getCurrentAge(player.dateOfBirth)}
+                </TableCell>
+                <TableCell className="text-right">{player.position}</TableCell>
+                <TableCell className="text-right">
+                  {player.nationality}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
