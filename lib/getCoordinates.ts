@@ -17,6 +17,10 @@ export const getCoordinates = async (address: string) => {
 
   const coordinates = await response.json();
 
+  if (coordinates.length === 0) {
+    return { message: `No coordinates found for ${address}` };
+  }
+
   const { lat, lon } = coordinates[0];
 
   return { latitude: lat, longitude: lon };

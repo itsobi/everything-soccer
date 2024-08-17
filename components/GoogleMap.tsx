@@ -3,8 +3,9 @@
 import { TeamLocationInfo } from '@/lib/getTeamLocationInfo';
 import { AdvancedMarker, InfoWindow, Map } from '@vis.gl/react-google-maps';
 import { useState } from 'react';
-
-const position = { lat: 53.54, lng: 10 };
+import { Button } from './ui/button';
+import { Undo2 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 type Props = {
   teamInfo: TeamLocationInfo;
@@ -14,11 +15,20 @@ type Props = {
 
 export default function GoogleMap({ teamInfo, latitude, longitude }: Props) {
   const [open, setOpen] = useState(false);
+  const router = useRouter();
 
   if (!latitude && !longitude) {
     return (
-      <div className="flex justify-center mt-7">
-        <h1>Sorry, we could not get the coordinates for {teamInfo.name}</h1>
+      <div className="flex flex-col justify-center items-center mt-7 lg:text-xl space-y-8">
+        <h1>
+          Sorry, we could not get the location coordinates for {teamInfo.name}
+        </h1>
+        <Button
+          onClick={() => router.back()}
+          className="animate-bounce border rounded-full hover:bg-[#e52534] hover:text-white"
+        >
+          <Undo2 />
+        </Button>
       </div>
     );
   } else {
