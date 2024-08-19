@@ -39,6 +39,21 @@ export default function TeamBreadcrumbMenu({ leagueCode, teamId }: Props) {
           </BreadcrumbSeparator>
           <BreadcrumbItem>
             <Link
+              href={`/${leagueCode}/team/${teamId}/upcoming-matches`}
+              className={`${
+                pathname === `/${leagueCode}/team/${teamId}/upcoming-matches` &&
+                'text-[#e52534] underline underline-offset-4 decoration-4'
+              } hover:text-[#e52534] `}
+              prefetch={false}
+            >
+              Upcoming Matches
+            </Link>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator>
+            <Slash className="text-gray-300" />
+          </BreadcrumbSeparator>
+          <BreadcrumbItem>
+            <Link
               href={`/${leagueCode}/team/${teamId}/location/${teamId}`}
               className={`${
                 pathname ===

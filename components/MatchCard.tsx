@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-export default function Match({
+export default function MatchCard({
   match,
   competition,
 }: {
@@ -22,7 +22,9 @@ export default function Match({
               className="text-blue-400 hover:underline cursor-pointer"
               prefetch={false}
             >
-              {match.homeTeam.shortName}
+              {match.homeTeam.shortName === 'Wolverhampton'
+                ? 'Wolves'
+                : match.homeTeam.shortName}
               {''}
             </Link>
           </div>
@@ -48,7 +50,9 @@ export default function Match({
               className="text-blue-400 hover:underline cursor-pointer"
               prefetch={false}
             >
-              {match.awayTeam.shortName}
+              {match.awayTeam.shortName === 'Wolverhampton'
+                ? 'Wolves'
+                : match.awayTeam.shortName}
               {''}
             </Link>
           </div>

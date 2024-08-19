@@ -71,7 +71,9 @@ export default async function LeagueHomePage({
                     className="text-blue-400 hover:underline cursor-pointer"
                     prefetch={false}
                   >
-                    {standing.team.shortName}
+                    {standing.team.shortName === 'Wolverhampton'
+                      ? 'Wolves'
+                      : standing.team.shortName}
                   </Link>
                 </TableCell>
                 <TableCell className="hidden lg:inline-flex items-center">

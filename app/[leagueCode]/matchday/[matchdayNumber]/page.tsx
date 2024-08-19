@@ -1,4 +1,4 @@
-import Match from '@/components/Match';
+import MatchCard from '@/components/MatchCard';
 import MatchdayArrows from '@/components/MatchdayArrows';
 import { getMatchdayMatches } from '@/lib/getMatchdayMatches';
 import serieALogo from '@/public/serie-a.png';
@@ -53,7 +53,7 @@ export default async function MatchdayPage({
       />
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 p-4 xl:p-0">
         {matches.map((match) => (
-          <Match key={match.id} match={match} competition={competition} />
+          <MatchCard key={match.id} match={match} competition={competition} />
         ))}
       </div>
     </div>
