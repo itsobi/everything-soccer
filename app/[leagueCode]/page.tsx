@@ -24,7 +24,7 @@ export default async function LeagueHomePage({
   );
 
   return (
-    <div className="min-h-screen flex-col space-y-8 px-4 xl:px-0">
+    <div className="min-h-screen flex-col space-y-8">
       <LeagueBreadcrumbMenu leagueCode={params.leagueCode} />
       <div className="px-6 xl:px-0">
         <div className="flex items-center justify-between lg:mb-4">
@@ -48,7 +48,7 @@ export default async function LeagueHomePage({
           <MatchdaySelector leagueCode={params.leagueCode} />
         </div>
 
-        <div className="border rounded p-2 bg-white shadow-md mb-8">
+        <div className="border rounded p-2 bg-white shadow-md">
           <Table className="w-full">
             <TableHeader>
               <TableRow>

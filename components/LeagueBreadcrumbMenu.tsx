@@ -18,7 +18,7 @@ const leagueCodeMappings: { [key in CompetitionKey]: string } = {
   SA: 'Serie A',
   FL1: 'Ligue 1',
   DED: 'Eredivisie',
-  ELC: 'English Championship',
+  ELC: 'Championship',
 };
 
 export default function LeagueBreadcrumbMenu({
