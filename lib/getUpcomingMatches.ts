@@ -1,3 +1,5 @@
+import { Match } from '@/types';
+
 export const getUpcomingMatches = async (teamId: string) => {
   const response = await fetch(
     `https://api.football-data.org/v4/teams/${teamId}/matches?status=SCHEDULED&limit=6`,

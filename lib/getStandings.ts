@@ -1,3 +1,4 @@
+import { Area, Competition, TableEntry } from '@/types';
 import { gql } from 'graphql-request';
 
 export const getStandings = async (leagueCode: string, season: string) => {

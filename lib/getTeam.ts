@@ -1,3 +1,5 @@
+import { TeamDetails } from '@/types';
+
 export const getTeam = async (teamId: string) => {
   const apiKey = process.env.FOOTBALL_DATA_API_KEY;
   if (!apiKey) {
@@ -18,34 +20,6 @@ export const getTeam = async (teamId: string) => {
     throw new Error(`Failed to fetch team: ${response.statusText}`);
 
   const result: TeamDetails = await response.json();
-
-  // const teamInfo: TeamInfo = {
-  //   id: result.id,
-  //   name: result.name,
-  //   shortName: result.shortName,
-  //   tla: result.tla,
-  //   crest: result.crest,
-  //   address: result.address,
-  //   website: result.website,
-  //   founded: result.founded,
-  //   clubColors: result.clubColors,
-  //   venue: result.venue,
-  // };
-
-  // const squad = result.squad.reduce<Record<Position, Squad[]>>(
-  //   (acc, player) => {
-  //     const key = player.position as Position;
-
-  //     if (!acc[key]) {
-  //       acc[key] = [];
-  //     }
-
-  //     acc[key].push(player);
-
-  //     return acc;
-  //   },
-  //   initialSquadValues
-  // );
 
   return {
     result,

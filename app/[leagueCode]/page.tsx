@@ -11,6 +11,7 @@ import {
 
 import Link from 'next/link';
 import MatchdaySelector from '@/components/MatchdaySelector';
+import LeagueBreadcrumbMenu from '@/components/LeagueBreadcrumbMenu';
 
 export default async function LeagueHomePage({
   params,
@@ -23,83 +24,91 @@ export default async function LeagueHomePage({
   );
 
   return (
-    <div className="px-6 xl:px-0 py-8">
-      <div className="flex items-center justify-between lg:mb-4">
-        <div className="flex items-center space-x-2">
-          <h1 className="text-lg lg:text-2xl font-semibold">
-            {competition.name}
-          </h1>
-          <div className="h-8 border" />
-          <img
-            src={location.flag}
-            alt={location.name}
-            className="w-[50px] h-[50px]"
-          />
-        </div>
+    <div className="min-h-screen flex-col space-y-8 px-4 xl:px-0">
+      <LeagueBreadcrumbMenu leagueCode={params.leagueCode} />
+      <div className="px-6 xl:px-0">
+        <div className="flex items-center justify-between lg:mb-4">
+          <div className="flex items-center space-x-2">
+            <h1 className="text-lg lg:text-2xl font-semibold">
+              {competition.name}
+            </h1>
+            <div className="h-8 border" />
+            <img
+              src={location.flag}
+              alt={location.name}
+              className="w-[50px] h-[50px]"
+            />
+          </div>
 
-        <div className="hidden lg:inline-flex">
+          <div className="hidden lg:inline-flex">
+            <MatchdaySelector leagueCode={params.leagueCode} />
+          </div>
+        </div>
+        <div className="flex justify-end mb-4 lg:hidden">
           <MatchdaySelector leagueCode={params.leagueCode} />
         </div>
-      </div>
-      <div className="flex justify-end mb-4 lg:hidden">
-        <MatchdaySelector leagueCode={params.leagueCode} />
-      </div>
-      <div className="border rounded p-2 bg-white shadow-md mb-8">
-        <Table className="w-full">
-          <TableHeader>
-            <TableRow>
-              <TableHead className="text-left font-semibold">Team</TableHead>
-              <TableHead className="text-left font-semibold">Points</TableHead>
-              <TableHead className="text-left font-semibold">Played</TableHead>
-              <TableHead className="text-left font-semibold">Won</TableHead>
-              <TableHead className="text-left font-semibold">Draw</TableHead>
-              <TableHead className="text-left font-semibold">Lost</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {standings.map((standing) => (
-              <TableRow key={standing.team.id}>
-                <TableCell className="flex items-center lg:hidden">
-                  {standing.position}.{' '}
-                  <img
-                    src={standing.team.crest}
-                    alt={standing.team.name}
-                    className="w-[30px] h-[30px] mx-2"
-                  />
-                  <Link
-                    href={`/${params.leagueCode}/team/${standing.team.id}`}
-                    className="text-blue-400 hover:underline cursor-pointer"
-                    prefetch={false}
-                  >
-                    {standing.team.shortName === 'Wolverhampton'
-                      ? 'Wolves'
-                      : standing.team.shortName}
-                  </Link>
-                </TableCell>
-                <TableCell className="hidden lg:inline-flex items-center">
-                  {standing.position}.{' '}
-                  <img
-                    src={standing.team.crest}
-                    alt={standing.team.name}
-                    className="w-[30px] h-[30px] mx-2"
-                  />
-                  <Link
-                    href={`/${params.leagueCode}/team/${standing.team.id}`}
-                    className="text-blue-400 hover:underline cursor-pointer"
-                    prefetch={false}
-                  >
-                    {standing.team.name}
-                  </Link>
-                </TableCell>
-                <TableCell>{standing.points}</TableCell>
-                <TableCell>{standing.playedGames}</TableCell>
-                <TableCell>{standing.won}</TableCell>
-                <TableCell>{standing.draw}</TableCell>
-                <TableCell>{standing.lost}</TableCell>
+
+        <div className="border rounded p-2 bg-white shadow-md mb-8">
+          <Table className="w-full">
+            <TableHeader>
+              <TableRow>
+                <TableHead className="text-left font-semibold">Team</TableHead>
+                <TableHead className="text-left font-semibold">
+                  Points
+                </TableHead>
+                <TableHead className="text-left font-semibold">
+                  Played
+                </TableHead>
+                <TableHead className="text-left font-semibold">Won</TableHead>
+                <TableHead className="text-left font-semibold">Draw</TableHead>
+                <TableHead className="text-left font-semibold">Lost</TableHead>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+            </TableHeader>
+            <TableBody>
+              {standings.map((standing) => (
+                <TableRow key={standing.team.id}>
+                  <TableCell className="flex items-center lg:hidden">
+                    {standing.position}.{' '}
+                    <img
+                      src={standing.team.crest}
+                      alt={standing.team.name}
+                      className="w-[30px] h-[30px] mx-2"
+                    />
+                    <Link
+                      href={`/${params.leagueCode}/team/${standing.team.id}`}
+                      className="text-blue-400 hover:underline cursor-pointer"
+                      prefetch={false}
+                    >
+                      {standing.team.shortName === 'Wolverhampton'
+                        ? 'Wolves'
+                        : standing.team.shortName}
+                    </Link>
+                  </TableCell>
+                  <TableCell className="hidden lg:inline-flex items-center">
+                    {standing.position}.{' '}
+                    <img
+                      src={standing.team.crest}
+                      alt={standing.team.name}
+                      className="w-[30px] h-[30px] mx-2"
+                    />
+                    <Link
+                      href={`/${params.leagueCode}/team/${standing.team.id}`}
+                      className="text-blue-400 hover:underline cursor-pointer"
+                      prefetch={false}
+                    >
+                      {standing.team.name}
+                    </Link>
+                  </TableCell>
+                  <TableCell>{standing.points}</TableCell>
+                  <TableCell>{standing.playedGames}</TableCell>
+                  <TableCell>{standing.won}</TableCell>
+                  <TableCell>{standing.draw}</TableCell>
+                  <TableCell>{standing.lost}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
       </div>
     </div>
   );

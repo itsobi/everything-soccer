@@ -1,37 +1,47 @@
 'use client';
 
-import { Slash } from 'lucide-react';
-
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbList,
   BreadcrumbSeparator,
-} from '@/components/ui/breadcrumb';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+} from './ui/breadcrumb';
+import { Slash } from 'lucide-react';
 
-type Props = {
-  leagueCode: string;
-  teamId: string;
+type CompetitionKey = 'PL' | 'PD' | 'BL1' | 'SA' | 'FL1' | 'DED' | 'ELC';
+const leagueCodeMappings: { [key in CompetitionKey]: string } = {
+  PL: 'Premier League',
+  PD: 'La Liga',
+  BL1: 'Bundesliga',
+  SA: 'Serie A',
+  FL1: 'Ligue 1',
+  DED: 'Eredivisie',
+  ELC: 'English Championship',
 };
 
-export default function TeamBreadcrumbMenu({ leagueCode, teamId }: Props) {
+export default function LeagueBreadcrumbMenu({
+  leagueCode,
+}: {
+  leagueCode: string;
+}) {
   const pathname = usePathname();
+
   return (
-    <div className="flex items-center justify-center p-4 border-b">
+    <div className="flex items-center justify-center py-4 border-b mb-4">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
             <Link
-              href={`/${leagueCode}/team/${teamId}`}
+              href={`/${leagueCode}`}
+              prefetch={false}
               className={`${
-                pathname === `/${leagueCode}/team/${teamId}` &&
+                pathname === `/${leagueCode}` &&
                 'text-[#e52534] underline underline-offset-4 decoration-4'
               } hover:text-[#e52534]`}
-              prefetch={false}
             >
-              Team
+              {leagueCodeMappings[leagueCode as CompetitionKey]}
             </Link>
           </BreadcrumbItem>
           <BreadcrumbSeparator>
@@ -39,30 +49,30 @@ export default function TeamBreadcrumbMenu({ leagueCode, teamId }: Props) {
           </BreadcrumbSeparator>
           <BreadcrumbItem>
             <Link
-              href={`/${leagueCode}/team/${teamId}/upcoming-matches`}
-              className={`${
-                pathname === `/${leagueCode}/team/${teamId}/upcoming-matches` &&
-                'text-[#e52534] underline underline-offset-4 decoration-4'
-              } hover:text-[#e52534] `}
+              href={`/${leagueCode}/matches-today`}
               prefetch={false}
+              className={`${
+                pathname === `/${leagueCode}/matches-today` &&
+                'text-[#e52534] underline underline-offset-4 decoration-4'
+              } hover:text-[#e52534]`}
             >
-              Upcoming Matches
+              See Today&apos;s Matches
             </Link>
           </BreadcrumbItem>
           <BreadcrumbSeparator>
             <Slash className="text-gray-300" />
           </BreadcrumbSeparator>
+
           <BreadcrumbItem>
             <Link
-              href={`/${leagueCode}/team/${teamId}/location/${teamId}`}
+              href={`/${leagueCode}/top-scorers`}
+              prefetch={false}
               className={`${
-                pathname ===
-                  `/${leagueCode}/team/${teamId}/location/${teamId}` &&
+                pathname === `/${leagueCode}/top-scorers` &&
                 'text-[#e52534] underline underline-offset-4 decoration-4'
               } hover:text-[#e52534]`}
-              prefetch={false}
             >
-              Location
+              Top Scorers
             </Link>
           </BreadcrumbItem>
         </BreadcrumbList>

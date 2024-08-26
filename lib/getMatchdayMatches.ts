@@ -1,3 +1,5 @@
+import { Competition, Match, ResultSet } from '@/types';
+
 export const getMatchdayMatches = async (
   leagueCode: string,
   matchday: string

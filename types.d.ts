@@ -155,3 +155,42 @@ type TeamDetails = {
   coach: Coach;
   squad: Squad[];
 };
+
+export type CompetitionKey = 'PL' | 'PD' | 'BL1' | 'SA' | 'FL1' | 'DED' | 'ELC';
+export const leagueCodeMappings: { [key in CompetitionKey]: string } = {
+  PL: 'Premier League',
+  PD: 'La Liga',
+  BL1: 'Bundesliga',
+  SA: 'Serie A',
+  FL1: 'Ligue 1',
+  DED: 'Eredivisie',
+  ELC: 'English Championship',
+};
+
+type Scorers = {
+  player: {
+    id: number;
+    name: string;
+    firstName: string;
+    lastName: string;
+    dateOfBirth: string;
+    nationality: string;
+    section: string;
+    lastUpdated: string;
+  };
+  team: {
+    id: number;
+    name: string;
+    shortName: string;
+    tla: string;
+    crest: string;
+    address: string;
+    website: string;
+    founded: number;
+    clubColors: string;
+    venue: string;
+    lastUpdated: string;
+  };
+  playedMatches: number;
+  goals: number;
+};

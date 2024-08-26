@@ -1,3 +1,4 @@
+import { Competition, Match } from '@/types';
 import Link from 'next/link';
 
 export default function MatchCard({
@@ -8,7 +9,9 @@ export default function MatchCard({
   competition: Competition;
 }) {
   return (
-    <div className="border p-2">
+    <div
+      className={`border p-2 ${match.status === 'IN_PLAY' && 'bg-red-200/50'}`}
+    >
       <div className="flex flex-col space-y-2 mb-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
@@ -67,7 +70,10 @@ export default function MatchCard({
           )}
         </div>
       </div>
-      <div className="text-right text-xs text-gray-500">
+      <div className="flex justify-between items-center text-xs text-gray-500">
+        {match.status === 'IN_PLAY' && (
+          <p className="text-red-500 font-semibold animate-pulse">Live</p>
+        )}
         <p>
           {new Date(match.utcDate).toLocaleString(undefined, {
             year: 'numeric',
