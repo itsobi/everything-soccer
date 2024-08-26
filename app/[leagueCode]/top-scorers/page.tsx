@@ -10,6 +10,8 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import Link from 'next/link';
+import Image from 'next/image';
+import serieALogo from '@/public/serie-a.png';
 
 type Props = {
   params: { leagueCode: string };
@@ -29,17 +31,25 @@ export default async function TopScorersPage({
           <div className="flex items-center space-x-2">
             <h1 className="text-lg lg:text-2xl font-semibold">{league.name}</h1>
             <div className="h-8 border" />
-            <img
-              src={league.emblem}
-              alt={league.name}
-              className="w-[50px] h-[50px]"
-            />
+            {leagueCode === 'SA' ? (
+              <Image
+                src={serieALogo}
+                alt={league.name}
+                className="w-[50px] h-[50px]"
+              />
+            ) : (
+              <img
+                src={league.emblem}
+                alt={league.name}
+                className="w-[50px] h-[50px]"
+              />
+            )}
           </div>
         </div>
 
         <div
           className={`border rounded p-2 bg-white shadow-md ${
-            leagueCode === 'FL1' && 'mt-4'
+            leagueCode === 'FL1' || ('SA' && 'mt-4')
           }`}
         >
           <Table className="w-full">
