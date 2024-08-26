@@ -1,6 +1,7 @@
 import MatchCard from '@/components/MatchCard';
 import TeamBreadcrumbMenu from '@/components/TeamBreadcrumbMenu';
 import { getUpcomingMatches } from '@/lib/getUpcomingMatches';
+import { Match } from '@/types';
 
 type Props = {
   params: {
